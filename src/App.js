@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Navbar from './components/layouts/Navbar';
 import User from './components/users/User';
+import Search from './components/users/Search';
 function App() {
   const [users,setUsers] = useState([]);
   // dùng useEffect để handle axios get api 
@@ -26,9 +27,9 @@ function App() {
     <div className='App' >
       <Navbar />
       <div className='container'>
-        <h1>Hello from react</h1>
+        <h1>Github Users Data</h1>
+        <Search />
       </div>
-      <User users={users}/>
     </div>
   )
 }
