@@ -25,7 +25,9 @@ const Search = () => {
         }
     }
     const onChange = (e) => setText(e.target.value);
-
+    const clearUsers = ()=>{
+        setUser([]);
+    }
     return (
         <div>
             <form onSubmit={onSubmit} className="form">
@@ -42,6 +44,9 @@ const Search = () => {
                     className="btn btn-success btn-block"
                 />
             </form>
+            {user.length>0 && (
+                <button className="btn btn-danger btn-block" onClick={clearUsers}>Clear</button>
+            )}
             <User users={user} />
         </div>
     )
