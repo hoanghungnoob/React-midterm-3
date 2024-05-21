@@ -2,36 +2,24 @@ import axios from "axios";
 import React, { Fragment, useState, useEffect } from "react";
 import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Repos from "../repos/Repos";
-
+import {getUser , getUserRepos }from "../../data/api"
 const User = () => {
     const { id } = useParams();
     const [user, setUser] = useState({});
     const [repos, setRepos] = useState([]);
-    const getUser = async (username) => {
-        try {
-            const response = await axios.get(`https://api.github.com/users/${username}`);
-            const data = response.data;
-            setUser(data);
-        } catch (error) {
-            console.log("Error fetch: ", error);
-        }
-    };
-    const getUserRepos = async (id) => {
-        // To be completed ...
-        // This is the small exercise for students
-        // Students will write the code to fetch the user's repositories
-        // Then display the repositories in the User component
-        try {
-            const response = await axios.get(`https://api.github.com/users/${id}/repos`)
-            setRepos(response.data);
-        } catch (error) {
-            console.error("Error fetch data: ",error);
-        }
-    };
-    useEffect(() => {
-        getUser(id);
-        getUserRepos(id);
-    }, []);
+    useEffect(()=>{
+        const fetchData = async()=>{
+            try {
+                const userData = await getUser(id);
+                setUser(userData);
+                const userRepos = await getUserRepos(id);
+                setRepos(userRepos);
+            } catch (error) {
+                console.error("Error:",error);
+            }
+        };
+        fetchData();
+    },[])
     const {
         name,
         avatar_url,

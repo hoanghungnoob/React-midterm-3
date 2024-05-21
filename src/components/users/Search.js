@@ -1,26 +1,29 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import Users from './Users';
-
+import { getUserSearch } from "../../data/api";
 const Search = () => {
     const [text, setText] = useState("");
     const [user, setUser] = useState([]);
+    useEffect(()=>{
+        const fetchData = async()=>{
+            try {
+                const response = await getUserSearch(text);
+                setUser(response)
+            } catch (error) {
+                
+            }
+        };
+        fetchData();
+    },[])
 
-    const searchUser = async (text) => {
-        try {
-            const response = await axios.get(`https://api.github.com/search/users?q=${text}`)
-            setUser(response.data.items);
-        } catch (error) {
-            console.error("Display error", error);
-        }
-    };
     const onSubmit = (e) => {
         e.preventDefault();
         if (text === "") {
             alert('input something')
         }
         else {
-            searchUser(text);
+            getUserSearch(text);
             setText("");
         }
     }
