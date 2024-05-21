@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import User from './User';
+import Users from './Users';
 
 const Search = () => {
     const [text, setText] = useState("");
@@ -47,7 +47,7 @@ const Search = () => {
             {user.length>0 && (
                 <button className="btn btn-danger btn-block" onClick={clearUsers}>Clear</button>
             )}
-            <User users={user} />
+            <Users users={user} />
         </div>
     )
 }
