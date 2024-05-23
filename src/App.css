@@ -267,6 +267,18 @@ img {
 .alert-dark {
   background: var(--dark-color);
   color: #fff;
+  .btn-dark{
+    background-color:var(--light-color);
+    color: var(--dark-color);
+  }
+  .card{
+    background-color:var(--light-color);
+    color: var(--dark-color);
+    .btn-dark{
+      background-color:var(--dark-color);
+      color: var(--light-color);
+    }
+  }
 }
 
 .btn-danger,

@@ -3,7 +3,6 @@ import RepoItem from './RepoItem';
 
 const Repos = (props) => {
     const { repos } = props;
-    console.log(repos);
     return (
         <>
             <h1>Show lists Repositories</h1>

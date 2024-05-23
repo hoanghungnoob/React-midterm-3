@@ -1,7 +1,6 @@
 import React from "react";
 const RepoItem = (props) => {
     const { repo } = props;
-    console.log(repo);
     return (
         <div className="list" style={{border:"1px solid", padding:"5px"}}>
             <h2>Repo name: {repo.name}</h2>
