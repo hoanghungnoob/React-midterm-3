@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Repos from "../repos/Repos";
 import {getUser , getUserRepos }from "../../data/api"
 const User = () => {
