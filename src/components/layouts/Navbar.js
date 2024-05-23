@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import { Icon, IconButton } from "@mui/material";
+import {IconButton } from "@mui/material";
 const Navbar = () => {
 
     const [theme, setTheme] = useState('light');

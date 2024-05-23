@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Repos from "../repos/Repos";
 import {getUser , getUserRepos }from "../../data/api"
 const User = () => {
     const { id } = useParams();
+    const history = useHistory();
     const [user, setUser] = useState({});
     const [repos, setRepos] = useState([]);
     useEffect(()=>{
@@ -19,7 +19,7 @@ const User = () => {
             }
         };
         fetchData();
-    },[])
+    },[id])
     const {
         name,
         avatar_url,
@@ -35,11 +35,10 @@ const User = () => {
         public_gists,
         hireable,
     } = user;
+    console.log(history);
     return (
         <Fragment>
-            <Link to="/" className="btn btn-light">
-                Back to Search
-            </Link>
+            <button onClick={() => history.goBack()}>Back to Search</button>
             Hireable: {hireable ? (
                 <i className="fas fa-check text-success" />
             ) : (

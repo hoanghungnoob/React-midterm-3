@@ -1,15 +1,21 @@
-import axios from "axios";
-import React, { useState } from "react";
+// Search.js
+import React, { useState, useContext, useEffect } from "react";
 import Users from './Users';
 import { getUserSearch } from "../../data/api";
+import SearchContext from "../../SearchContext";
+
 const Search = () => {
-    const [text, setText] = useState("");
-    const [user, setUser] = useState([]);
+    const { searchQuery, setSearchQuery, searchResults, setSearchResults } = useContext(SearchContext);
+    const [text, setText] = useState(searchQuery);
+
+    useEffect(() => {
+        setText(searchQuery);
+    }, [searchQuery]);
 
     const searchUser = async (text) => {
         try {
             const users = await getUserSearch(text);
-            setUser(users);
+            setSearchResults(users);
         } catch (error) {
             console.error("Display error", error);
         }
@@ -21,14 +27,17 @@ const Search = () => {
             alert('Please enter a search term');
         } else {
             searchUser(text);
+            setSearchQuery(text);
             setText("");
         }
     }
 
     const onChange = (e) => setText(e.target.value);
-    const clearUsers = ()=>{
-        setUser([]);
+    const clearUsers = () => {
+        setSearchResults([]);
+        setSearchQuery('')
     }
+
     return (
         <div>
             <form onSubmit={onSubmit} className="form">
@@ -45,11 +54,12 @@ const Search = () => {
                     className="btn btn-success btn-block"
                 />
             </form>
-            {user.length>0 && (
+            {searchResults.length > 0 && (
                 <button className="btn btn-danger btn-block" onClick={clearUsers}>Clear</button>
             )}
-            <Users users={user} />
+            <Users users={searchResults} />
         </div>
     )
 }
+
 export default Search;
