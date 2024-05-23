@@ -19,7 +19,7 @@ const User = () => {
             }
         };
         fetchData();
-    },[])
+    },[id])
     const {
         name,
         avatar_url,
