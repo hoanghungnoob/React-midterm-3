@@ -2,7 +2,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import Users from './Users';
 import { getUserSearch } from "../../data/api";
-import SearchContext from "../../SearchContext";
+import SearchContext from "../../context/SearchContext";
 
 const Search = () => {
     const { searchQuery, setSearchQuery, searchResults, setSearchResults } = useContext(SearchContext);
